@@ -1,4 +1,4 @@
-package life.reading.club.alpha;
+package com.piclub.alpha;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

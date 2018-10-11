@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 文件名（含路径）、大小、文件保留天数 -->
+    <property name="LOG_FILE" value="../applogs/piclub.log" />
+    <property name="LOG_FILE_MAX_SIZE" value="8MB" />
+    <property name="LOG_FILE_MAX_HISTORY" value="10" />
+
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <!-- 记录到logstash -->
+    <!-- <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+                 <destination>192.168.220.83:9601</destination>
+              <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>-->
+
+    <root level="INFO">
+        <!-- <appender-ref ref="stash"/> -->
+        <appender-ref ref="CONSOLE" /> <!--输出到控制台 采用默认配置-->
+        <appender-ref ref="FILE" /> <!--输出到文件 采用默认配置-->
+    </root>
+
+</configuration>
