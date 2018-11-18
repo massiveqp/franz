@@ -27,8 +27,8 @@ public class ActivitiesController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createActivity(@RequestBody Activity activity) {
+    public Activity createActivity(@RequestBody Activity activity) {
         logger.info("Starting createActivity");
-        activityService.createActivity(activity);
+        return activityService.createActivity(activity);
     }
 }

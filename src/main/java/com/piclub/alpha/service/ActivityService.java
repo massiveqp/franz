@@ -1,7 +1,10 @@
 package com.piclub.alpha.service;
 
 import com.piclub.alpha.dao.ActivityDao;
+import com.piclub.alpha.enums.ErrorMessage;
 import com.piclub.alpha.model.Activity;
+import com.piclub.alpha.exception.BizException;
+import com.piclub.alpha.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +25,32 @@ public class ActivityService {
         return activityDao.selectActivities();
     }
 
-    public void createActivity(Activity activity) {
-        //todo param check
+    public Activity createActivity(Activity activity) {
+        if (StringUtils.isBlank(activity.getActivityName())
+        || StringUtils.isBlank(activity.getStartTime())
+        || activity.getPlace() == null) throw new BizException(ErrorMessage.request_param_error);
+
+        activity.setStatus(0);
+
         activityDao.insertActivity(activity);
+
+        return activityDao.selectActivityByName(activity.getActivityName());
     }
 
     public void deleteActivity(String activityId) {
+        if (StringUtils.isBlank(activityId)) throw new BizException(ErrorMessage.request_param_error);
+
         activityDao.deleteActivity(activityId);
     }
 
-    public void updateActivity(Activity activity) {
+    public Activity updateActivity(Activity activity) {
+        if (StringUtils.isBlank(activity.getActivityId())
+        || StringUtils.isBlank(activity.getActivityName())
+        || StringUtils.isBlank(activity.getStartTime())
+        || null == activity.getPlace()) throw new BizException(ErrorMessage.request_param_error);
+
         activityDao.updateActivity(activity);
+
+        return activityDao.selectActivityById(activity.getActivityId());
     }
 }

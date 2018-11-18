@@ -5,6 +5,7 @@ import com.piclub.alpha.service.ActivityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,13 +25,14 @@ public class ActivityController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void modifyActivity(@RequestBody Activity activity,
+    public Activity modifyActivity(@RequestBody Activity activity,
                                @PathVariable String activityId) {
         logger.info("Starting modifyActivity");
-        activityService.updateActivity(activity);
+        return activityService.updateActivity(activity);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteActivity(@PathVariable String activityId) {
         logger.info("Starting deleteActivity");
         activityService.deleteActivity(activityId);
