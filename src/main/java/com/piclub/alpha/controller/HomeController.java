@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping("/ma")
+    @GetMapping("/createActivity")
     public String getIndex() {
         return "mamami";
     }

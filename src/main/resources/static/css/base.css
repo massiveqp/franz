@@ -29,6 +29,10 @@ ul {
     padding: 0;
 }
 
+form input {
+
+}
+
 .PiclubNav-primary {
     border-bottom: 1px solid #f3f3f3;
     justify-content: space-between;
