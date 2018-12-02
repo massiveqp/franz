@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html ng-app="piclubApp">
 <head>
 	<title>海派学堂</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/feed.css">
 
-	<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<body ng-app>
-	<div id="PiclubNav">
-		<header class="PiclubNav">
+<body class="bg-light" ng-controller="MainCtrl as ctrl">
+	<div id="container">
+		<header class="col-md-12 PiclubNav">
 			<div class="PiclubNav-primary">
 				<a href="/">
 					<h1>海派学堂</h1>
@@ -26,46 +29,18 @@
 				</nav>
 			</div>
 		</header>
+
+		<div class="col-md-12">
+			<div ng-repeat="act in ctrl.items" class="mb-3">
+				<div><span ng-bind="act.activityName"></span></div>
+				<div><span ng-bind="act.place"></span></div>
+			</div>
+		</div>
+
 	</div>
 
-	<h1>Hello {{name}}</h1>
-	<input type="text" ng-model="name" name="">
-	<div class="page">
-		<div class="card">
-			<ul class="quick-nav">
-	            <li>
-	                <a href="/movie/nowintheater?loc_id=108288">影院热映</a>
-	            </li>
-	              <li>
-	                  <a href="https://market.douban.com/campaign/calendar2018?utm_campaign=home_market&amp;utm_source=douban&amp;utm_medium=mobile_web">豆瓣日历</a>
-	              </li>
-	            <li>
-	                <a id="hot-topics" href="https://m.douban.com/time/?dt_time_source=douban-msite_shortcut">豆瓣时间</a>
-	            </li>
-	            <li>
-	                <a href="https://www.douban.com/doubanapp/app?channel=card_home&amp;direct_dl=1">使用豆瓣App</a>
-	            </li>
-	        </ul>
-			<section id="recommend-feed">
-				<div data-reactroot>
-					<div class="feed-section">
-						<a class="feed-item" href="https://m.douban.com/note/695660755">
-							<div class="feed-content">
-								<h3>abc</h3>
-								<p>前些天送我家姑娘去参加一个小提琴活动，临走在网上查地址，顺便看看这个排练加演出连续两天的活动，网页声称是专门为“有天赋的年轻音乐家（talented young musician) ”准备的。当然，这是美国人一贯的夸张，因为那几个老师，网页上说是世界知名，我一个也没听说过。 然后查邮件，发现有个听着有点耳熟的中国人给我发信，打开一看，原来是本地交响乐团新招不久的年轻华裔小伙。三段话，第一段讲自己父母的支持让他走上了音乐之路，第二段感谢我们对孩子和本地音乐活动的支持，最...</p>
-							</div>
-							<div class="author">"by&nbsp;"
-								<span class="name">QP</span>
-							</div>
-							<span class="feed-label"></span>
-						</a>
-						<a class="feed-item" href="https://m.douban.com/note/695348497/"><div class="feed-content"><div class="cover" style="position: relative; background: url(&quot;https://img3.doubanio.com/view/note/sqs/public/p55360446.jpg&quot;) center center / cover no-repeat rgb(250, 250, 250);"><div style="padding-top: 100%;"></div></div><h3>周日下午三点半钟的海</h3><p>“于是，你闭上眼睛，大海送上又一波浪潮，自从有了世界，大海就一浪追着一浪，绵绵不绝，它抚平了一切，又打碎了一切，去而复返。”——E.B.怀特 入职新单位后，迅速成为“空中飞人”，全国飞行的节奏连难得的周末也不例外。上周末去福州开会，周六去，周日回。去之前，在地图上发现福州长乐机场就在海边，不过没有问到从机场去海边的方式。 周六晚上到福州的飞机快降落时，在海面上盘旋了一个弯。坐在飞机上的我，以上帝视角俯瞰大海，夜幕下的大海幽暗深沉，依稀能看到潮水不断...</p></div><div class="author"><!-- react-text: 19 -->by&nbsp;<!-- /react-text --><span class="name">墙头马上Hao</span></div><span class="feed-label"></span></a>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
 
 	<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+	<script  src="js/piclub.js"></script>
 </body>
 </html>

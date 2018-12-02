@@ -77,9 +77,9 @@ public class ActivitiesControllerIT {
 
     @After
     public void tearDown() {
-        activityDao.deleteActivity(deleteId);
-        activityDao.deleteActivity(updateId);
-        activityDao.deleteActivity(selectId);
+//        activityDao.deleteActivity(deleteId);
+//        activityDao.deleteActivity(updateId);
+//        activityDao.deleteActivity(selectId);
     }
 
     @Test
