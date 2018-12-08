@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html ng-app="piclubApp" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>创建活动</title>
+    <title>修改活动</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
@@ -10,12 +10,12 @@
 <body class="bg-light" ng-controller="MainCtrl as ctrl">
     <div class="container">
 		<div class="py-5 text-center">
-    		<h2>创建新活动</h2>
+    		<h2>修改活动</h2>
     	</div>
 
 
     	<div class="col-md-12 order-md-1">
-   			<form ng-submit="ctrl.submit()" name="activityForm">
+   			<form ng-submit="ctrl.modifyAct()" name="activityModifyForm">
 		    	<div class="mb-3">
 		    		<ng-form name="poster">
 			    		<label>活动海报</label>
@@ -55,7 +55,7 @@
 		        </div>
 		        
 		        <div class="mb-3">
-		        	<input class="btn btn-primary btn-lg btn-block" type="submit" value="创建" ng-disabled="activityForm.$invalid">	
+		        	<input class="btn btn-primary btn-lg btn-block" type="submit" value="创建" ng-disabled="activityModifyForm.$invalid">
 		        </div>
 		    </form>
     	</div>	
@@ -65,6 +65,6 @@
     
 
     <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
-    <script  src="../static/js/piclub.js"></script>
+    <script src="/js/piclub.js"></script>
 </body>
 </html>
