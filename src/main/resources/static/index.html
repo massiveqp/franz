@@ -20,7 +20,7 @@
 				<nav>
 					<ul>
 						<li>
-							<a href="/createActivity" style="color: #2384E9">创建活动</a>
+							<a href="/activity/create" style="color: #2384E9">创建活动</a>
 						</li>
 						<li></li>
 						<li></li>
@@ -31,7 +31,7 @@
 		</header>
 
 		<div class="col-md-12">
-			<div ng-repeat="act in ctrl.items" class="mb-3">
+			<div ng-repeat="act in ctrl.acts" class="mb-3">
 				<div><span ng-bind="act.activityName"></span></div>
 				<div><span ng-bind="act.place"></span></div>
 			</div>
