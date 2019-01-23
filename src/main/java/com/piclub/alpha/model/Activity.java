@@ -69,7 +69,11 @@ public class Activity {
     }
 
     public void setStartTime(String startTime) {
-        this.startTime = startTime;
+        if (startTime == null || !startTime.endsWith(".0")) {
+            this.startTime = startTime;
+        } else {
+            this.startTime = startTime.substring(0, startTime.lastIndexOf(".0"));
+        }
     }
 
     public String getEndTime() {

@@ -14,4 +14,9 @@ public class PageController {
     public String getFilledActivity() {
         return "modifyAct";
     }
+
+    @GetMapping("/activity/{actId}/view")
+    public String getActivityPage() {
+        return "actView";
+    }
 }

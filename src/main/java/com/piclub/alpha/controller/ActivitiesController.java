@@ -22,13 +22,15 @@ public class ActivitiesController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Activity> getActivities() {
-        logger.info("Starting getActivities");
+        logger.info("Get Activities");
+
         return activityService.getActivities();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Activity createActivity(@RequestBody Activity activity) {
-        logger.info("Starting createActivity");
+        logger.info("Create Activity");
+
         return activityService.createActivity(activity);
     }
 }

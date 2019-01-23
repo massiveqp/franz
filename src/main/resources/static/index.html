@@ -31,14 +31,17 @@
 		</header>
 
 		<div class="col-md-12">
-			<div ng-repeat="act in ctrl.acts" class="mb-3">
-				<div><span ng-bind="act.activityName"></span></div>
-				<div><span ng-bind="act.place"></span></div>
-			</div>
+            <div ng-repeat="act in ctrl.acts" class="mb-3">
+                <a href="/activity/{{act.activityId}}/view">
+                <!--<div><span ng-bind="act.activityId"></span></div>-->
+                <div><span ng-bind="act.activityName"></span></div>
+                <div><span ng-bind="act.place"></span></div>
+                <div><span ng-bind="act.startTime"></span></div>
+                </a>
+            </div>
 		</div>
 
 	</div>
-
 
 	<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
 	<script  src="js/piclub.js"></script>
