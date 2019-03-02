@@ -25,7 +25,6 @@ import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
 public class ActivitiesControllerIT {
     private static final Logger logger = LoggerFactory.getLogger(ActivitiesControllerIT.class);
 

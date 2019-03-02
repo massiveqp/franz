@@ -78,7 +78,7 @@ public class ActivityDaoTest {
         Activity activityDb = dao.selectActivityById(testActivityId);
         assertEquals("updatedName", activityDb.getActivityName());
         assertEquals(2, activityDb.getStatus().intValue());
-        assertEquals("2018-10-10 11:12:14.0", activityDb.getStartTime());
+        assertEquals("2018-10-10 11:12:14", activityDb.getStartTime());
     }
 
     @Test

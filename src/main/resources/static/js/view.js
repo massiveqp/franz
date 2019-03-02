@@ -12,6 +12,7 @@ angular.module("piclubApp", []).controller("ViewCtrl", ['$http', function($http)
     var pathArray = window.location.pathname.split('/'),
         actId = pathArray[2],
         url = '/activity/' + actId;
+    me.actId = actId;
 
     $http.get(url).then(function(response) {
         me.act = response.data;
@@ -37,6 +38,14 @@ angular.module("piclubApp", []).controller("ViewCtrl", ['$http', function($http)
     };
 
 	me.deleteAct = function () {
+        console.log('delete act!...');
+        $http.delete('/activity/' + me.actId, null).then(function succ(response) {
+            alert('删除成功！');
 
+            window.location.href = '/';
+        }, function fail(response) {
+            alert('删除失败！');
+            console.log(response);
+        });
     }
 }]);

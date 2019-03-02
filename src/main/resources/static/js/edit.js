@@ -32,15 +32,18 @@ angular.module("piclubApp", []).controller("EditCtrl", ['$http', function($http)
         console.error('Error while fetch activity ' + actId);
     });
 
-	// Create act
+	// Modify act
 	me.modifyAct = function() {
 		me.act.place = me.selectedPlaceId;
 
 		var dtp = $('#dtp-editAct')[0];
 		me.act.startTime = dtp.value;
-		console.log(me.act);
 
-		$http.post('/activity/' + me.actId, me.act).then(function succ(response) {
+		// Prevent price changing in the input. Otherwise, if the update fails, the price would be a wrong number.
+		var modifiedAct = angular.copy(me.act);
+		modifiedAct.price *= 100;
+
+		$http.post('/activity/' + me.actId, modifiedAct).then(function succ(response) {
                 alert('修改成功！');
 
                 window.location.href = '/activity/' + me.actId + '/view';
