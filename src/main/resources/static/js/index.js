@@ -10,7 +10,7 @@ angular.module("piclubApp", []).controller("MainCtrl", ['$http', function($http)
 
 	// Get Activities
 	me.acts = [];
-	$http.get('./activities').then(function(response) {
+	$http.get('/activities').then(function(response) {
 		me.acts = response.data;
 
 		//modify place

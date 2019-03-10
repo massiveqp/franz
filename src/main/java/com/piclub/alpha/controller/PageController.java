@@ -15,8 +15,13 @@ public class PageController {
         return "modifyAct";
     }
 
-    @GetMapping("/activity/{actId}/view")
+    @GetMapping("/activity/{actId}/details")
     public String getActivityPage() {
-        return "actView";
+        return "actDetails";
+    }
+
+    @GetMapping("activity/{actId}/finance")
+    public String getEnrollPage() {
+        return "finance";
     }
 }

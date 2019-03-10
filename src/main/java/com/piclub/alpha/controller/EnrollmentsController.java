@@ -5,10 +5,7 @@ import com.piclub.alpha.service.EnrollmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,12 +18,10 @@ public class EnrollmentsController {
     private EnrollmentService enrollmentService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Enrollment> getEnrollments(@RequestBody Enrollment enrollment) {
-        logger.info("get Enrollments by act...");
+    public List<Enrollment> getEnrollmentsByActId(@RequestParam(name = "actId") String actId) {
+        logger.info(String.format("get Enrollments by actId %s", actId));
 
-        String activityId = enrollment.getActivityId();
-
-        return enrollmentService.getEnrollmentsByAct(activityId);
+        return enrollmentService.getEnrollmentsByAct(actId);
     }
 
     @RequestMapping(method = RequestMethod.POST)

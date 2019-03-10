@@ -9,19 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-/*
-CREATE TABLE IF NOT EXISTS `piclub`.`enrollment` (
-  `enrollment_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `pay_status` TINYINT NOT NULL COMMENT '0: not paid\n1: paid',
-  `checked_in` TINYINT NOT NULL COMMENT '0: not checked\n1: checked',
-  `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
-  `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `activity_id` INT UNSIGNED NOT NULL,
-  `user_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`enrollment_id`))
-ENGINE = InnoDB;
 
- */
+
 @Service
 public class EnrollmentService {
     @Autowired

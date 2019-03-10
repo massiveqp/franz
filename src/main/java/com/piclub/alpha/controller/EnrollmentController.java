@@ -15,14 +15,14 @@ public class EnrollmentController {
     @Autowired
     private EnrollmentService enrollmentService;
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     public void cancelEnroll(@PathVariable String enrollmentId) {
         logger.info("cancelEnroll...");
 
         enrollmentService.cancelEnroll(enrollmentId);
     }
 
-    @RequestMapping(value = "/payStatus", method = RequestMethod.POST)
+    @PostMapping(value = "/payStatus")
     public void modifyPayStatus(@RequestBody Enrollment enrollment) {
         logger.info("update pay status");
 

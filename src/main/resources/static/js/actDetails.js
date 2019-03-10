@@ -1,4 +1,4 @@
-angular.module("piclubApp", []).controller("ViewCtrl", ['$http', function($http){
+angular.module("piclubApp", []).controller("actDetailsCtrl", ['$http', function($http){
 	var me = this;
 
     me.places = [
@@ -7,7 +7,7 @@ angular.module("piclubApp", []).controller("ViewCtrl", ['$http', function($http)
         {label: '常乐书房', id: 3}
     ];
 
-	//retrieve act info & enroll people
+	//retrieve act details
     me.act = {};
     var pathArray = window.location.pathname.split('/'),
         actId = pathArray[2],
@@ -25,16 +25,41 @@ angular.module("piclubApp", []).controller("ViewCtrl", ['$http', function($http)
             break;
         }
     }, function(errResponse) {
-        console.error('Error while fetch activity ' + actId);
+        console.error('Error while fetching activity ' + actId);
     });
 
+    // retrieve all enrollments
+    me.enrollments = {};
+    me.refreshEnroll = function() {
+        $http.get('/enrollments?actId=' + me.actId).then(function (resp) {
+            me.enrollments = resp.data;
+            console.log(me.enrollments);
 
-	me.upload = function() {
-		console.log('uploading');
-	};
+        }, function (reason) {
+            alert('获取报名信息失败！');
+            console.log('Error when fetching enrollments!');
+        });
+    };
 
-	me.modifyAct = function() {
-      console.log('modify act...')
+    me.refreshEnroll();
+
+    // Enroll by username & actId
+    me.enrollment = {};
+    me.enrollment.activityId = me.actId;
+    me.enroll = function () {
+        $http.post('/enrollments', me.enrollment).then(function (value) {
+            alert('报名成功！');
+            me.refreshEnroll();
+
+        }, function (reason) {
+            alert('报名失败！');
+        });
+
+        $('#enrollModal').modal('toggle');
+    };
+
+    me.cancelEnroll = function () {
+
     };
 
 	me.deleteAct = function () {

@@ -55,10 +55,7 @@ public class EnrollmentsControllerIT {
 
     @Test
     public void testGetEnrollByActId() {
-        Enrollment enrollment = new Enrollment();
-        enrollment.setActivityId(activity_ID_2);
-
-        List<Enrollment> enrollmentList = controller.getEnrollments(enrollment);
+        List<Enrollment> enrollmentList = controller.getEnrollmentsByActId(activity_ID_2);
 
         assertEquals(1, enrollmentList.size());
 
