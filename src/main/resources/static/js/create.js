@@ -14,9 +14,11 @@ angular.module("piclubApp", []).controller("CreateCtrl", ['$http', function($htt
 
 		var dtp = $('#dtp')[0];
 		me.act.startTime = dtp.value;
-		console.log(me.act);
 
-		$http.post('/activities', me.act).then(function succ(response) {
+		var actToPost = angular.copy(me.act);
+		actToPost.price *= 100;
+
+		$http.post('/activities', actToPost).then(function succ(response) {
                 alert('创建成功');
                 // $('.alert').alert();
                 // $('.alert').alert('close');

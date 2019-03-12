@@ -15,10 +15,11 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EnrollmentControllerIT {
+public class EnrollmentControllerTest {
     @Autowired
     private EnrollmentDao enrollmentDao;
 
@@ -56,8 +57,8 @@ public class EnrollmentControllerIT {
 
     @After
     public void tearDown() {
-        enrollmentDao.deleteEnrollment(activity_ID_2);
-        enrollmentDao.deleteEnrollment(activity_ID_1);
+        enrollmentDao.deleteEnrollmentByActId(activity_ID_2);
+        enrollmentDao.deleteEnrollmentByActId(activity_ID_1);
     }
 
     @Test
@@ -65,8 +66,7 @@ public class EnrollmentControllerIT {
         controller.cancelEnroll(enrollmentId1);
 
         Enrollment cancelled = enrollmentDao.selectEnrollmentById(enrollmentId1);
-        assertNotNull(cancelled);
-        assertEquals(0, cancelled.getEnrollStatus().intValue());
+        assertNull(cancelled);
     }
 
     @Test

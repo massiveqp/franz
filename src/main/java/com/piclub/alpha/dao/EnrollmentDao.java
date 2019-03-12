@@ -34,6 +34,10 @@ public interface EnrollmentDao {
     @ResultMap("EnrollmentMap")
     List<Enrollment> selectEnrollmentByUser(String userId);
 
+    @Select("select * from enrollment where activity_id = #{param1} and username = #{param2}")
+    @ResultMap("EnrollmentMap")
+    Enrollment findEnrollByActAndUser(String activityId, String username);
+
     @Insert("insert into enrollment (activity_id, user_id, username, pay_status, checked_in, enroll_status)" +
             "values (#{activityId}, #{userId}, #{username}, #{payStatus}, #{checkedIn}, #{enrollStatus})")
     void insertEnrollment(Enrollment enrollment);
@@ -50,8 +54,10 @@ public interface EnrollmentDao {
             "where enrollment_id = #{enrollmentId}")
     void updateEnrollStatus(Enrollment enrollment);
 
+    @Delete("delete from enrollment where enrollment_id = #{param1}")
+    void deleteEnrollmentById(String enrollmentId);
+
     // for test use
     @Delete("delete from enrollment where activity_id = #{activityId}")
-    void deleteEnrollment(String activityId);
-
+    void deleteEnrollmentByActId(String activityId);
 }

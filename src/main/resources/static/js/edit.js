@@ -46,7 +46,7 @@ angular.module("piclubApp", []).controller("EditCtrl", ['$http', function($http)
 		$http.post('/activity/' + me.actId, modifiedAct).then(function succ(response) {
                 alert('修改成功！');
 
-                window.location.href = '/activity/' + me.actId + '/view';
+                window.location.href = '/activity/' + me.actId + '/details';
             }, function fail(response) {
                 alert('修改失败！');
 		        console.log(response);

@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EnrollmentsControllerIT {
+public class EnrollmentsControllerTest {
     @Autowired
     private EnrollmentDao enrollmentDao;
 
@@ -49,13 +51,13 @@ public class EnrollmentsControllerIT {
 
     @After
     public void tearDown() {
-        enrollmentDao.deleteEnrollment(activity_ID_2);
-        enrollmentDao.deleteEnrollment(activity_ID_1);
+        enrollmentDao.deleteEnrollmentByActId(activity_ID_2);
+        enrollmentDao.deleteEnrollmentByActId(activity_ID_1);
     }
 
     @Test
     public void testGetEnrollByActId() {
-        List<Enrollment> enrollmentList = controller.getEnrollmentsByActId(activity_ID_2);
+        List<Enrollment> enrollmentList = controller.getEnrollmentsByActId(activity_ID_2, false);
 
         assertEquals(1, enrollmentList.size());
 
@@ -64,11 +66,15 @@ public class EnrollmentsControllerIT {
 
     @Test
     public void testEnroll() {
+        //clean data
+        enrollmentDao.deleteEnrollmentByActId(activity_ID_ENROLL);
+
         Enrollment enrollment = new Enrollment();
         enrollment.setActivityId(activity_ID_ENROLL);
         enrollment.setUsername("Naruto");
 
-        controller.doEnroll(enrollment);
+        ResponseEntity resp = controller.doEnroll(enrollment);
+        assertEquals(HttpStatus.CREATED, resp.getStatusCode());
 
         //verify
         List<Enrollment> enrollments = enrollmentDao.selectEnrollmentByAct(activity_ID_ENROLL);
@@ -82,7 +88,7 @@ public class EnrollmentsControllerIT {
         assertEquals(0, created.getCheckedIn().intValue());
 
         //tear down
-        enrollmentDao.deleteEnrollment(activity_ID_ENROLL);
+        enrollmentDao.deleteEnrollmentByActId(activity_ID_ENROLL);
     }
 
     //negative cases

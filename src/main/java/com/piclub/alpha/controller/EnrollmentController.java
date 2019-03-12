@@ -5,6 +5,7 @@ import com.piclub.alpha.service.EnrollmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +17,7 @@ public class EnrollmentController {
     private EnrollmentService enrollmentService;
 
     @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void cancelEnroll(@PathVariable String enrollmentId) {
         logger.info("cancelEnroll...");
 

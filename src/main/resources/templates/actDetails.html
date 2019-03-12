@@ -21,7 +21,7 @@
                 </li>
                 <li class="nav-item">
                     <!--<a class="nav-link" href="/activity/{{ctrl.act.activityId}}/delete">删除活动</a>-->
-                    <a type="button" class="nav-link btn btn-primary" data-toggle="modal" data-target="#deleteActModal">
+                    <a class="nav-link" data-toggle="modal" data-target="#deleteActModal">
                         删除该活动
                     </a>
                 </li>
@@ -89,18 +89,19 @@
         </div>
 
         <div class="col-md-12">
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>当前报名信息</th>
+                        <th scope="col">报名ID</th>
+                        <th scope="col">姓名</th>
+                        <th scope="col">付款状态</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="enrollment in ctrl.enrollments" class="mb-3">
-                        <td><span ng-bind="enrollment.enrollmentId"></span></td>
+                        <th scope="row"><span ng-bind="enrollment.enrollmentId"></span></th>
                         <td><span ng-bind="enrollment.username"></span></td>
                         <td><span ng-bind="enrollment.payStatus"></span></td>
-                        <td><span ng-bind="enrollment.createTime"></span></td>
                     </tr>
                 </tbody>
             </table>
@@ -139,7 +140,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cancelLabel">提示</h5>
+                    <h5 class="modal-title" id="cancelLabel">撤销信息填写</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -147,8 +148,8 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label>姓名</label>
-                            <input class="form-control" type="text" ng-model="ctrl.enrollment.username">
+                            <label>报名ID</label>
+                            <input class="form-control" type="text" ng-model="ctrl.cancelEnrollId">
                         </div>
                     </form>
                 </div>

@@ -20,7 +20,7 @@ public class EnrollmentService {
         return enrollmentDao.selectEnrollmentByAct(activityId);
     }
 
-    public void enroll(Enrollment enrollment) {
+    public Enrollment enroll(Enrollment enrollment) {
         if (StringUtils.isBlank(enrollment.getActivityId())
             || StringUtils.isBlank(enrollment.getUsername())) {
             throw new BizException(ErrorMessage.request_param_error);
@@ -31,7 +31,9 @@ public class EnrollmentService {
         enrollment.setUserId("666");
         enrollment.setEnrollStatus(1);
 
+        // todo merge into a saveAndReturnId operation
         enrollmentDao.insertEnrollment(enrollment);
+        return enrollmentDao.findEnrollByActAndUser(enrollment.getActivityId(), enrollment.getUsername());
     }
 
     public void cancelEnroll(String enrollmentId) {
@@ -39,11 +41,11 @@ public class EnrollmentService {
             throw new BizException(ErrorMessage.request_param_error);
         }
 
-        Enrollment enrollment = new Enrollment();
-        enrollment.setEnrollmentId(enrollmentId);
-        enrollment.setEnrollStatus(0);
+//        Enrollment enrollment = new Enrollment();
+//        enrollment.setEnrollmentId(enrollmentId);
+//        enrollment.setEnrollStatus(0);
 
-        enrollmentDao.updateEnrollStatus(enrollment);
+        enrollmentDao.deleteEnrollmentById(enrollmentId);
     }
 
     public void updatePaymentStatus(String enrollmentId, Integer payStatus) {

@@ -18,7 +18,7 @@ public interface ActivityDao {
             @Result(column = "create_time", property = "createTime"),
             @Result(column = "update_time", property = "updateTime")
     })
-    @Select("select * from activity")
+    @Select("select * from activity order by activity_id desc")
     List<Activity> selectActivities();
 
     @Select("select * from activity where activity_id = #{activityId}")

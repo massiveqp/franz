@@ -2,7 +2,6 @@ package com.piclub.alpha.controller;
 
 import com.piclub.alpha.dao.ActivityDao;
 import com.piclub.alpha.model.Activity;
-import com.piclub.alpha.util.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +24,8 @@ import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ActivitiesControllerIT {
-    private static final Logger logger = LoggerFactory.getLogger(ActivitiesControllerIT.class);
+public class ActivitiesControllerTest {
+    private static final Logger logger = LoggerFactory.getLogger(ActivitiesControllerTest.class);
 
     @LocalServerPort
     private int port;

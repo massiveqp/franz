@@ -58,8 +58,19 @@ angular.module("piclubApp", []).controller("actDetailsCtrl", ['$http', function(
         $('#enrollModal').modal('toggle');
     };
 
+    // Cancel enroll by enrollment ID
+    me.cancelEnrollId = undefined;
     me.cancelEnroll = function () {
+        $http.delete('/enrollment/' + me.cancelEnrollId).then(function (value) {
+            alert('撤销成功');
+            me.refreshEnroll();
+            // clear data field in modal
+            me.cancelEnrollId = null;
+        }, function (reason) {
+            alert('撤销失败')
+        });
 
+        $('#cancelEnrollModal').modal('toggle');
     };
 
 	me.deleteAct = function () {

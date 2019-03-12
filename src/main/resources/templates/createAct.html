@@ -28,7 +28,7 @@
 		    	-->
 		    	<div class="mb-3">
 		    		<label>活动名称</label>
-		    		<input class="form-control" type="text" ng-model="ctrl.act.activityName">
+		    		<input class="form-control" type="text" ng-model="ctrl.act.activityName" required>
 		    	</div>
 
 		        <div class="mb-3">
@@ -47,7 +47,7 @@
 		        
 		        <div class="mb-3">
 		        	<label>活动时间</label>
-                    <input class="form-control form_datetime" type="text" readonly
+                    <input class="form-control form_datetime" type="text" required
                            data-link-field="dtp" data-link-format="yyyy-mm-dd HH:ii:ss">
 		        	<input class="form-control" type="hidden" id="dtp">
 		        </div>
