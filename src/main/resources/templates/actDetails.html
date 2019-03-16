@@ -11,10 +11,10 @@
 <body class="bg-light" ng-controller="actDetailsCtrl as ctrl">
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/">海派学堂</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#actDetailsCollapse" aria-controls="actDetailsCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="collapse navbar-collapse" id="actDetailsCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/activity/{{ctrl.act.activityId}}/edit">修改活动<span class="sr-only">(current)</span></a>
@@ -84,10 +84,31 @@
     	</div>
 
         <div class="row">
-            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#enrollModal">报名</button>
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#enrollModal">报名/登记</button>
             <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#cancelEnrollModal">撤销报名</button>
         </div>
 
+        <h5>当前活动报名：</h5>
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">报名ID</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">付款状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="enrollment in ctrl.enrollments" class="mb-3">
+                    <th scope="row"><span ng-bind="enrollment.enrollmentId"></span></th>
+                    <td><span ng-bind="enrollment.username"></span></td>
+                    <td><span ng-bind="enrollment.payStatus"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>当前日常登记：</h5>
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
@@ -105,7 +126,6 @@
                     </tr>
                 </tbody>
             </table>
-
         </div>
     </div>
 
@@ -124,6 +144,10 @@
                         <div class="mb-3">
                             <label>姓名</label>
                             <input class="form-control" type="text" ng-model="ctrl.enrollment.username">
+                            <!-- 报名类型 活动/吃饭/活动+吃饭 /座位/座位+残卷-->
+
+                            <!-- eat only-->
+
                         </div>
                     </form>
                 </div>

@@ -7,6 +7,11 @@ angular.module("piclubApp", []).controller("actDetailsCtrl", ['$http', function(
         {label: '常乐书房', id: 3}
     ];
 
+    me.payStatusEnum = [
+        '未付款',
+        '已付款'
+    ];
+
 	//retrieve act details
     me.act = {};
     var pathArray = window.location.pathname.split('/'),
@@ -33,7 +38,13 @@ angular.module("piclubApp", []).controller("actDetailsCtrl", ['$http', function(
     me.refreshEnroll = function() {
         $http.get('/enrollments?actId=' + me.actId).then(function (resp) {
             me.enrollments = resp.data;
-            console.log(me.enrollments);
+
+            //todo create a codeStore
+            for (var i = 0; i < me.enrollments.length; i++) {
+                var code = me.enrollments[i].payStatus;
+                me.enrollments[i].payStatus = me.payStatusEnum[code];
+            }
+
 
         }, function (reason) {
             alert('获取报名信息失败！');

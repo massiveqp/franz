@@ -5,45 +5,114 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
-	<link rel="stylesheet" type="text/css" href="css/base.css">
-	<link rel="stylesheet" type="text/css" href="css/feed.css">
-
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<body class="bg-light" ng-controller="EnrollCtrl as ctrl">
-	<div id="container">
-		<header class="col-md-12 PiclubNav">
-			<div class="PiclubNav-primary">
-				<a href="/">
-					<h1>海派学堂</h1>
-				</a>
-				<nav>
-					<ul>
-						<li>
-							<a href="/activity/create" style="color: #2384E9">创建活动</a>
-						</li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
+<body class="bg-light" ng-controller="FinanceCtrl as ctrl">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">海派学堂</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#financeCollapse" aria-controls="financeCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="financeCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/activity/{{ctrl.actId}}/details">返回<span class="sr-only">(current)</span></a>
+                </li>
+                <!--<li class="nav-item">-->
+                    <!--&lt;!&ndash;<a class="nav-link" href="/activity/{{ctrl.act.activityId}}/delete">删除活动</a>&ndash;&gt;-->
+                    <!--<a class="nav-link" data-toggle="modal" data-target="#deleteActModal">-->
+                        <!--删除该活动-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item active">-->
+                    <!--<a class="nav-link" href="/activity/{{ctrl.act.activityId}}/finance">结算</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </nav>
 
-		<div class="col-md-12">
-            <div ng-repeat="act in ctrl.acts" class="mb-3">
-                <a href="/activity/{{act.activityId}}/view">
-                <!--<div><span ng-bind="act.activityId"></span></div>-->
-                <div><span ng-bind="act.activityName"></span></div>
-                <div><span ng-bind="act.place"></span></div>
-                <div><span ng-bind="act.startTime"></span></div>
-                </a>
+    <div class="py-5">
+        <h2>活动结算表</h2>
+    </div>
+
+    <div class="col-md-12">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#calcModal">开始算账！</button>
+    </div>
+
+    <h5>活动</h5>
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">报名ID</th>
+                <th scope="col">姓名</th>
+                <th scope="col">付款状态</th>
+                <th scope="col">签到状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="enrollment in ctrl.enrollments" class="mb-3">
+                <th scope="row"><span ng-bind="enrollment.enrollmentId"></span></th>
+                <td><span ng-bind="enrollment.username"></span></td>
+                <td><button ng-click="ctrl.togglePayStatus(enrollment.enrollmentId)"><span ng-bind="enrollment.payStatus"></span></button></td>
+                <td><button ng-click="ctrl.toggleCheckedIn(enrollment.enrollmentId)"><span ng-bind="enrollment.checkedIn"></span></button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h5>日常座位费</h5>
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">报名ID</th>
+                <th scope="col">姓名</th>
+                <th scope="col">付款状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="enrollment in ctrl.enrollments" class="mb-3">
+                <th scope="row"><span ng-bind="enrollment.enrollmentId"></span></th>
+                <td><span ng-bind="enrollment.username"></span></td>
+                <td><span ng-bind="enrollment.payStatus"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for calculating -->
+    <div class="modal fade" id="calcModal" tabindex="-1" role="dialog" aria-labelledby="calcLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enrollLabel">结算信息填写</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label>活动成本(买菜)</label>
+                            <input class="form-control" type="text" ng-model="ctrl.calc.cost">
+                            <label>活动餐捐</label>
+                            <input class="form-control" type="number" ng-model="ctrl.calc.mealFee">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="ctrl.calculate()">计算</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                </div>
             </div>
-		</div>
-
-	</div>
+        </div>
+    </div>
 
 	<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
-	<script  src="js/finance.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+
+	<script src="/js/finance.js"></script>
 </body>
 </html>
