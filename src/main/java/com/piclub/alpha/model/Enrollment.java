@@ -1,13 +1,20 @@
 package com.piclub.alpha.model;
 
+import javax.validation.constraints.Size;
+
 public class Enrollment {
     private String enrollmentId;
+
+    @Size(min = 1)
     private String activityId;
+
     private String userId;
     private Integer payStatus;
     private Integer checkedIn;
     private String createTime;
     private String updateTime;
+
+    @Size(min = 2)
     private String username;
     private Integer enrollStatus;
 

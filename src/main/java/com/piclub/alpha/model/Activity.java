@@ -1,10 +1,25 @@
 package com.piclub.alpha.model;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Activity {
     private String activityId;
+
+    @Size(min = 2)
+    @NotNull
     private String activityName;
+
+    @Min(0)
+    @NotNull
     private Integer place;
     private Integer price;
+
+    //todo @Future
+    @Size(min = 14)
+    @NotNull
     private String startTime;
     private String endTime;
     private Integer peopleLimit;

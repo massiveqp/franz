@@ -26,9 +26,6 @@ public class ActivityService {
     }
 
     public Activity createActivity(Activity activity) {
-        if (StringUtils.isBlank(activity.getActivityName())
-        || StringUtils.isBlank(activity.getStartTime())
-        || activity.getPlace() == null) throw new BizException(ErrorMessage.request_param_error);
 
         activity.setStatus(0);
 

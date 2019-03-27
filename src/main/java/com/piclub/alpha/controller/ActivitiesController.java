@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class ActivitiesController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Activity createActivity(@RequestBody Activity activity) {
+    public Activity createActivity(@Valid @RequestBody Activity activity) {
         logger.info("Create Activity");
 
         return activityService.createActivity(activity);

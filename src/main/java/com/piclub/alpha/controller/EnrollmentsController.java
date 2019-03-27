@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class EnrollmentsController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> doEnroll(@RequestBody Enrollment enrollment) {
+    public ResponseEntity<Object> doEnroll(@Valid @RequestBody Enrollment enrollment) {
         logger.info("doEnroll...");
 
         Enrollment savedEnroll = enrollmentService.enroll(enrollment);

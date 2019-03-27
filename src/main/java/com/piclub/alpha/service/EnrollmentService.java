@@ -21,10 +21,10 @@ public class EnrollmentService {
     }
 
     public Enrollment enroll(Enrollment enrollment) {
-        if (StringUtils.isBlank(enrollment.getActivityId())
-            || StringUtils.isBlank(enrollment.getUsername())) {
-            throw new BizException(ErrorMessage.request_param_error);
-        }
+//        if (StringUtils.isBlank(enrollment.getActivityId())
+//            || StringUtils.isBlank(enrollment.getUsername())) {
+//            throw new BizException(ErrorMessage.request_param_error);
+//        }
 
         enrollment.setPayStatus(0);
         enrollment.setCheckedIn(0);
