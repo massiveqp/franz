@@ -15,7 +15,7 @@ import java.util.Date;
 @ControllerAdvice
 @RestController
 public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler {
-    // catch old BizException, will be replaced by the handleMethodArgumentNotValid
+    // todo deprecate old BizException & replace with @Valid
     @ExceptionHandler(BizException.class)
     public final ResponseEntity<Object> handleBizException(BizException ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(

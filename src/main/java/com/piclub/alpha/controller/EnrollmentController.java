@@ -31,9 +31,9 @@ public class EnrollmentController {
         enrollmentService.updatePaymentStatus(enrollment.getEnrollmentId(), enrollment.getPayStatus());
     }
 
-    @RequestMapping(value = "/checkedIn", method = RequestMethod.POST)
+    @PostMapping(value = "/checkedIn")
     public void modifyCheckedIn(@RequestBody Enrollment enrollment) {
-        logger.info("update checked in...");
+        logger.info("update checked in");
 
         enrollmentService.updateCheckedInStatus(enrollment.getEnrollmentId(), enrollment.getCheckedIn());
     }

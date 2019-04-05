@@ -108,25 +108,6 @@
             </table>
         </div>
 
-        <h5>当前日常登记：</h5>
-        <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">报名ID</th>
-                        <th scope="col">姓名</th>
-                        <th scope="col">付款状态</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="enrollment in ctrl.enrollments" class="mb-3">
-                        <th scope="row"><span ng-bind="enrollment.enrollmentId"></span></th>
-                        <td><span ng-bind="enrollment.username"></span></td>
-                        <td><span ng-bind="enrollment.payStatus"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
 
     <!-- Modal for enrolling act -->
@@ -144,9 +125,7 @@
                         <div class="mb-3">
                             <label>姓名</label>
                             <input class="form-control" type="text" ng-model="ctrl.enrollment.username">
-                            <!-- 报名类型 活动/吃饭/活动+吃饭 /座位/座位+残卷-->
-
-                            <!-- eat only-->
+                            <!-- 创客？-->
 
                         </div>
                     </form>
