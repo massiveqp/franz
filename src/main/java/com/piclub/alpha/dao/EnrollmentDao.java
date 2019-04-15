@@ -17,7 +17,8 @@ public interface EnrollmentDao {
             @Result(column = "create_time", property = "createTime"),
             @Result(column = "update_time", property = "updateTime"),
             @Result(column = "username", property = "username"),
-            @Result(column = "enroll_status", property = "enrollStatus")
+            @Result(column = "enroll_status", property = "enrollStatus"),
+            @Result(column = "user_level", property = "userLevel")
     })
     @Select("select * from enrollment")
     List<Enrollment> selectEnrollments();
@@ -38,8 +39,10 @@ public interface EnrollmentDao {
     @ResultMap("EnrollmentMap")
     Enrollment findEnrollByActAndUser(String activityId, String username);
 
-    @Insert("insert into enrollment (activity_id, user_id, username, pay_status, checked_in, enroll_status)" +
-            "values (#{activityId}, #{userId}, #{username}, #{payStatus}, #{checkedIn}, #{enrollStatus})")
+    @Insert("insert into enrollment (activity_id, user_id, username, pay_status, checked_in, " +
+            "enroll_status, user_level)" +
+            "values (#{activityId}, #{userId}, #{username}, #{payStatus}, #{checkedIn}, " +
+            "#{enrollStatus}, #{userLevel})")
     void insertEnrollment(Enrollment enrollment);
 
     @Update("update enrollment set pay_status = #{payStatus} " +

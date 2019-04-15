@@ -17,6 +17,7 @@ public class Enrollment {
     @Size(min = 2)
     private String username;
     private Integer enrollStatus;
+    private Integer userLevel;
 
     @Override
     public String toString() {
@@ -103,5 +104,13 @@ public class Enrollment {
 
     public void setEnrollStatus(Integer enrollStatus) {
         this.enrollStatus = enrollStatus;
+    }
+
+    public Integer getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(Integer userLevel) {
+        this.userLevel = userLevel;
     }
 }

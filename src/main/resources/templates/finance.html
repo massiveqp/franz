@@ -46,16 +46,18 @@
             <tr>
                 <th scope="col">报名ID</th>
                 <th scope="col">姓名</th>
+                <th scope="col">是否创客</th>
                 <th scope="col">付款状态</th>
-                <th scope="col">签到状态</th>
+                <!--<th scope="col">签到状态</th>-->
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="enrollment in ctrl.enrollments" class="mb-3">
                 <th scope="row"><span ng-bind="enrollment.enrollmentId"></span></th>
                 <td><span ng-bind="enrollment.username"></span></td>
-                <td><button ng-click="ctrl.togglePayStatus(enrollment)"><span ng-bind="enrollment.payStatus"></span></button></td>
-                <td><button ng-click="ctrl.toggleCheckedIn(enrollment)"><span ng-bind="enrollment.checkedIn"></span></button></td>
+                <td><span ng-bind="enrollment.userLevelLabel"></span></td>
+                <td><button ng-click="ctrl.togglePayStatus(enrollment)"><span ng-bind="enrollment.payStatusLabel"></span></button></td>
+                <!--<td><button ng-click="ctrl.toggleCheckedIn(enrollment)"><span ng-bind="enrollment.checkedIn"></span></button></td>-->
             </tr>
             </tbody>
         </table>

@@ -44,7 +44,16 @@
 		        	<label>费用</label>
 		        	<input class="form-control" type="text" ng-model="ctrl.act.price">
 		        </div>
-		        
+
+                <div class="mb-3">
+                    <label>创客半价</label>
+                    <div>
+                        <select class="form-control" ng-model="ctrl.selectedHalfPrice"
+                                ng-options="c.id as c.label for c in ctrl.halfPrices">
+                        </select>
+                    </div>
+                </div>
+
 		        <div class="mb-3">
 		        	<label>活动时间</label>
                     <input class="form-control form_datetime" type="text" required

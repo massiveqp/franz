@@ -92,13 +92,13 @@ public class EnrollmentsControllerTest {
     }
 
     //negative cases
-    @Test(expected = BizException.class)
+    @Test(expected = Exception.class)
     public void testEnrollWithNoneParam() {
         Enrollment enrollment = new Enrollment();
         controller.doEnroll(enrollment);
     }
 
-    @Test(expected = BizException.class)
+    @Test(expected = Exception.class)
     public void testEnrollWithoutUsername() {
         Enrollment enrollment = new Enrollment();
         enrollment.setActivityId(activity_ID_1);

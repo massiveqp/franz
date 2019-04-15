@@ -8,9 +8,16 @@ angular.module("piclubApp", []).controller("CreateCtrl", ['$http', function($htt
     ];
 	me.selectedPlaceId = 1;
 
+    me.halfPrices = [
+        {label: '无', id: 0},
+        {label: '有', id: 1}
+    ];
+    me.selectedHalfPrice = 0;
+
 	// Create act
 	me.createAct = function() {
 		me.act.place = me.selectedPlaceId;
+		me.act.halfPrice = me.selectedHalfPrice;
 
 		var dtp = $('#dtp')[0];
 		me.act.startTime = dtp.value;

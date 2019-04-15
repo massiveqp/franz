@@ -28,6 +28,7 @@ public class Activity {
     private String createTime;
     private String updateTime;
     private Integer status;
+    private Integer halfPrice;
 
     @Override
     public String toString() {
@@ -145,5 +146,13 @@ public class Activity {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getHalfPrice() {
+        return halfPrice;
+    }
+
+    public void setHalfPrice(Integer halfPrice) {
+        this.halfPrice = halfPrice;
     }
 }

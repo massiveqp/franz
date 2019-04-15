@@ -16,7 +16,8 @@ public interface ActivityDao {
             @Result(column = "people_limit", property = "peopleLimit"),
             @Result(column = "pic_url", property = "picUrl"),
             @Result(column = "create_time", property = "createTime"),
-            @Result(column = "update_time", property = "updateTime")
+            @Result(column = "update_time", property = "updateTime"),
+            @Result(column = "half_price", property = "halfPrice")
     })
     @Select("select * from activity order by activity_id desc")
     List<Activity> selectActivities();
@@ -30,14 +31,15 @@ public interface ActivityDao {
     Activity selectActivityByName(String activityName);
 
     @Insert("insert into activity (activity_name, place, price, start_time, " +
-            "end_time, people_limit, memo, pic_url, status) " +
+            "end_time, people_limit, memo, pic_url, status, half_price) " +
             "values (#{activityName}, #{place}, #{price}, #{startTime}, " +
-            "#{endTime}, #{peopleLimit}, #{memo}, #{picUrl}, #{status})")
+            "#{endTime}, #{peopleLimit}, #{memo}, #{picUrl}, #{status}, #{halfPrice})")
     void insertActivity(Activity activity);
 
     @Update("update activity set activity_name = #{activityName}, place = #{place}," +
             "price = #{price}, start_time = #{startTime}, end_time = #{endTime}," +
-            "people_limit = #{peopleLimit}, memo = #{memo}, pic_url = #{picUrl}, status = #{status} " +
+            "people_limit = #{peopleLimit}, memo = #{memo}, pic_url = #{picUrl}, " +
+            "status = #{status}, half_price = #{halfPrice} " +
             "where activity_id = #{activityId}")
     void updateActivity(Activity activity);
 

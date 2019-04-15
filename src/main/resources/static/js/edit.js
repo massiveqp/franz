@@ -7,6 +7,11 @@ angular.module("piclubApp", []).controller("EditCtrl", ['$http', function($http)
         {label: '常乐书房', id: 3}
     ];
 
+	me.halfPrices = [
+        {label: '无', id: 0},
+        {label: '有', id: 1}
+    ];
+
 	//retrieve act
     me.act = {};
     var pathArray = window.location.pathname.split('/'),
@@ -18,11 +23,12 @@ angular.module("piclubApp", []).controller("EditCtrl", ['$http', function($http)
     $http.get(url).then(function(response) {
         me.act = response.data;
 
-        // adapt price and place
+        // adapt price
         me.act.price /= 100.0;
 
-        //set place
+        //set place & half price
         me.selectedPlaceId = me.act.place;
+        me.selectedHalfPrice = me.act.halfPrice;
 
         //set date
         var dtp = $('#dtp-editAct')[0];
@@ -35,6 +41,7 @@ angular.module("piclubApp", []).controller("EditCtrl", ['$http', function($http)
 	// Modify act
 	me.modifyAct = function() {
 		me.act.place = me.selectedPlaceId;
+        me.act.halfPrice = me.selectedHalfPrice;
 
 		var dtp = $('#dtp-editAct')[0];
 		me.act.startTime = dtp.value;

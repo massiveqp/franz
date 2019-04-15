@@ -67,6 +67,10 @@
 		        <div class="mb-1">
 		        	<span>费用: {{ctrl.act.price}}</span>
 		        </div>
+
+                <div class="mb-1">
+                    <span>创客半价: {{ctrl.act.halfPrice}}</span>
+                </div>
 		        
 		        <div class="mb-1">
 		        	<span>活动时间: {{ctrl.act.startTime}}</span>
@@ -95,14 +99,14 @@
                 <tr>
                     <th scope="col">报名ID</th>
                     <th scope="col">姓名</th>
-                    <th scope="col">付款状态</th>
+                    <th scope="col">是否创客</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="enrollment in ctrl.enrollments" class="mb-3">
                     <th scope="row"><span ng-bind="enrollment.enrollmentId"></span></th>
                     <td><span ng-bind="enrollment.username"></span></td>
-                    <td><span ng-bind="enrollment.payStatus"></span></td>
+                    <td><span ng-bind="enrollment.userLevel"></span></td>
                 </tr>
                 </tbody>
             </table>
@@ -125,8 +129,14 @@
                         <div class="mb-3">
                             <label>姓名</label>
                             <input class="form-control" type="text" ng-model="ctrl.enrollment.username">
-                            <!-- 创客？-->
-
+                        </div>
+                        <div class="mb-3">
+                            <label>是否创客</label>
+                            <div>
+                                <select class="form-control" ng-model="ctrl.selectedMaker"
+                                        ng-options="c.id as c.label for c in ctrl.makerFlags">
+                                </select>
+                            </div>
                         </div>
                     </form>
                 </div>
