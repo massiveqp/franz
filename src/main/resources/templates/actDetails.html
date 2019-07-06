@@ -9,7 +9,7 @@
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 </head>
 <body class="bg-light" ng-controller="actDetailsCtrl as ctrl">
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top bg-dark">
         <a class="navbar-brand" href="/">海派学堂</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#actDetailsCollapse" aria-controls="actDetailsCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
                 <li class="nav-item">
                     <!--<a class="nav-link" href="/activity/{{ctrl.act.activityId}}/delete">删除活动</a>-->
                     <a class="nav-link" data-toggle="modal" data-target="#deleteActModal">
-                        删除该活动
+                        删除活动
                     </a>
                 </li>
                 <li class="nav-item active">
@@ -32,29 +32,8 @@
         </div>
     </nav>
 
-    <!-- Modal for deleting act -->
-    <div class="modal fade" id="deleteActModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    确定要删除这个活动吗？
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">不，再想想</button>
-                    <button type="button" class="btn btn-primary" ng-click="ctrl.deleteAct()">是的</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
-        <div class="py-5">
+        <div class="py-2">
             <h2>{{ctrl.act.activityName}}</h2>
         </div>
 
@@ -112,6 +91,27 @@
             </table>
         </div>
 
+    </div>
+
+    <!-- Modal for deleting act -->
+    <div class="modal fade" id="deleteActModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    确定要删除这个活动吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">不，再想想</button>
+                    <button type="button" class="btn btn-primary" ng-click="ctrl.deleteAct()">是的</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal for enrolling act -->
